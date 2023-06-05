@@ -23,6 +23,9 @@ const add_todo = () => {
     editable: false,
     createAt: new Date().getTime()
   })
+
+  input_content.value = ''
+  input_category.value = null
 }
 
 const removeTodo = (todo) =>{
@@ -77,7 +80,7 @@ onMounted(() => {
               type="radio"
               name="category"
               id="category1"
-              value="priority"
+              value="business"
               v-model="input_category"
               />
             <span class="bubble business"></span>
@@ -110,10 +113,10 @@ onMounted(() => {
           <label>
             <input type="checkbox" v-model="todo.done" />
             <span :class="`bubble ${
-              todo.category == 'business'
-                  ? 'business'
-                  : 'personal'
-            }`"></span>
+							todo.category == 'business' 
+								? 'business' 
+								: 'personal'
+						}`"></span>
           </label>
 
           <div class="todo-content">
