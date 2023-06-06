@@ -8,7 +8,7 @@ const input_content = ref('')
 const input_category = ref(null)
 
 const todos_asc = computed(() => todos.value.sort((a, b) => {
-  return a.createAt - b.createAt
+  return b.createAt - a.createAt
 }))
 
 const add_todo = () => {
@@ -21,7 +21,8 @@ const add_todo = () => {
     category: input_category.value,
     done: false,
     editable: false,
-    createAt: new Date().getTime()
+    createAt: new Date().getTime(),
+    createAtTime: new Date().toLocaleString()
   })
 
   input_content.value = ''
@@ -121,6 +122,7 @@ onMounted(() => {
 
           <div class="todo-content">
             <input type="text" v-model="todo.content" />
+            <p>Created At: {{ todo.createAtTime }}</p>
           </div>
 
           <div class="actions">
